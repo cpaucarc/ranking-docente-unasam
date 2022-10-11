@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string("nombres", 150);
             $table->string("correo", 75)->nullable()->unique();
             $table->string("celular", 9)->nullable()->unique();
-            $table->tinyInteger("genero")->nullable()->unique();
+            $table->tinyInteger("genero");
         });
     }
 
