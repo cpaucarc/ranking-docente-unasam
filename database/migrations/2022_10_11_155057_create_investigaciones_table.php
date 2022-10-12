@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string("enlace_publicacion")->nullable();
             $table->string("num_resolucion", 50)->nullable();
             $table->unsignedTinyInteger("estado_ejecucion");
-            $table->unsignedTinyInteger("estado_validacion");
+            $table->unsignedTinyInteger("estado_validacion")->default(1);
             $table->unsignedTinyInteger("financiador");
             $table->unsignedTinyInteger("tipo_publicacion")->nullable();
             $table->date("fecha_inicio");

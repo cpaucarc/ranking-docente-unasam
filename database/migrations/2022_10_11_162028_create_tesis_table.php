@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -20,7 +19,7 @@ return new class extends Migration
             $table->string("tesista_nombre");
             $table->string("num_resolucion_asignacion", 50)->nullable();
             $table->unsignedTinyInteger("estado_ejecucion");
-            $table->unsignedTinyInteger("estado_validacion");
+            $table->unsignedTinyInteger("estado_validacion")->default(1);
             $table->date("fecha_registro");
             $table->date("fecha_validacion")->nullable();
             $table->text("observacion")->nullable();

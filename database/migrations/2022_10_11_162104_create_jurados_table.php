@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("num_resolucion_asignacion", 50)->nullable();
             $table->date("fecha_registro");
+            $table->unsignedTinyInteger("estado_validacion")->default(1);
             $table->date("fecha_validacion")->nullable();
             $table->text("observacion")->nullable();
 

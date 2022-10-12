@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('investigacion_documentos', function (Blueprint $table) {
             $table->id();
             $table->string("denominacion", 150);
+            $table->unsignedTinyInteger("estado_validacion")->default(1);
             $table->date("fecha_validacion")->nullable();
             $table->text("observacion")->nullable();
 

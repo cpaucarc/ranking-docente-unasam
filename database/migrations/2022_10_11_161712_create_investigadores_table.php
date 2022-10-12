@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('investigadores', function (Blueprint $table) {
             $table->id();
             $table->unsignedTinyInteger("tipo");
+            $table->unsignedTinyInteger("estado_validacion")->default(1);
             $table->date("fecha_validacion")->nullable();
             $table->text("observacion")->nullable();
 

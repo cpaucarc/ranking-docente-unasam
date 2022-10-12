@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->date("fecha_inicio");
             $table->date("fecha_fin");
             $table->unsignedTinyInteger("estado_ejecucion");
-            $table->unsignedTinyInteger("estado_validacion");
+            $table->unsignedTinyInteger("estado_validacion")->default(1);
             $table->date("fecha_registro");
             $table->date("fecha_validacion")->nullable();
             $table->text("observacion")->nullable();
