@@ -16,6 +16,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Titillium Web', ...defaultTheme.fontFamily.sans],
             },
+            backdropBlur: {
+                xs: '2px',
+            }
         },
         colors: {
             transparent: 'transparent',
