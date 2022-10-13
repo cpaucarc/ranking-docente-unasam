@@ -111,7 +111,7 @@
     }
 
     .btn-secondary {
-        @apply border-[#1A1A1A] bg-[#1A1A1A] text-gray-300 hover:text-gray-100 hover:bg-[#242424] hover:border-[#242424] active:border-[#1A1A1A] active:bg-[#1A1A1A] btn-base-filled;
+        @apply border-gray-900 bg-gray-900 text-gray-300 hover:text-gray-100 hover:bg-gray-800 hover:border-gray-800 active:border-gray-900 active:bg-gray-900 btn-base-filled;
     }
 
     /* Dropdown button/link */
