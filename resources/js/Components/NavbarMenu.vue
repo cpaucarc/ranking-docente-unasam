@@ -28,9 +28,11 @@
                         <Dropdown align="right" width="48">
                             <template #trigger>
                                 <button v-if="$page.props.jetstream.managesProfilePhotos"
-                                        class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        class="flex items-center gap-x-1 font-semibold text-gray-300 hover:text-gray-50 soft-transition">
+                                    <img class="icon-10 rounded-full object-cover"
                                          :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
+                                    {{ $page.props.user.name }}
+                                    <ChevronDownIcon class="icon-4"/>
                                 </button>
 
                                 <span v-else class="inline-flex rounded-md">
