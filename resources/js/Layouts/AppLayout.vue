@@ -27,7 +27,7 @@ defineProps({
 
             <!-- Page Content -->
             <main>
-                <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 text-gray-100">
+                <div class="py-16 max-w-8xl mx-auto sm:px-6 lg:px-8 text-gray-100">
                     <slot/>
                 </div>
             </main>
