@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-white border-b border-gray-100">
+    <nav class="border-b border-gray-700">
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -34,11 +34,10 @@
                                 </button>
 
                                 <span v-else class="inline-flex rounded-md">
-                                    <button type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                    <Boton color="secondary">
                                         {{ $page.props.user.name }}
-                                        <ChevronDownIcon class="ml-2 -mr-0.5 h-4 w-4"/>
-                                    </button>
+                                        <ChevronDownIcon class="icon-4"/>
+                                    </Boton>
                                 </span>
                             </template>
 
@@ -52,7 +51,7 @@
                                     Profile
                                 </DropdownLink>
 
-                                <div class="border-t border-gray-100"/>
+                                <div class="border-t border-gray-700"/>
 
                                 <!-- Authentication -->
                                 <form @submit.prevent="logout">
@@ -67,14 +66,12 @@
 
                 <!-- Hamburger -->
                 <div class="-mr-2 flex items-center sm:hidden">
-                    <button
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition"
-                        @click="showingNavigationDropdown = ! showingNavigationDropdown">
-                        <Bars3Icon class="h-6 w-6"
+                    <Boton color="secondary" @click="showingNavigationDropdown = ! showingNavigationDropdown">
+                        <Bars3Icon class="icon-6"
                                    :class="{'hidden': showingNavigationDropdown, 'inline-flex': !showingNavigationDropdown }"/>
-                        <XMarkIcon class="h-6 w-6"
+                        <XMarkIcon class="icon-6"
                                    :class="{'hidden': !showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"/>
-                    </button>
+                    </Boton>
                 </div>
             </div>
         </div>
@@ -132,6 +129,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import Boton from '@/Components/Boton.vue';
 
 import {ChevronDownIcon, Bars3Icon, XMarkIcon} from "@heroicons/vue/20/solid";
 
