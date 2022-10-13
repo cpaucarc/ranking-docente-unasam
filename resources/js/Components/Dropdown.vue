@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 
 const props = defineProps({
     align: {
@@ -12,7 +12,7 @@ const props = defineProps({
     },
     contentClasses: {
         type: Array,
-        default: () => ['py-1', 'bg-white'],
+        default: () => ['py-1', 'bg-gray-900', 'border', 'border-gray-700'],
     },
 });
 
@@ -49,11 +49,11 @@ const alignmentClasses = computed(() => {
 <template>
     <div class="relative">
         <div @click="open = ! open">
-            <slot name="trigger" />
+            <slot name="trigger"/>
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
-        <div v-show="open" class="fixed inset-0 z-40" @click="open = false" />
+        <div v-show="open" class="fixed inset-0 z-40" @click="open = false"/>
 
         <transition
             enter-active-class="transition ease-out duration-200"
@@ -71,7 +71,7 @@ const alignmentClasses = computed(() => {
                 @click="open = false"
             >
                 <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
-                    <slot name="content" />
+                    <slot name="content"/>
                 </div>
             </div>
         </transition>
