@@ -53,7 +53,7 @@
 /* Botones */
 @layer components {
     .btn-base {
-        @apply inline-flex gap-x-1 items-center font-semibold tracking-wide whitespace-nowrap soft-transition rounded text-sm disabled:opacity-60 disabled:cursor-not-allowed print:hidden;
+        @apply inline-flex gap-x-1 items-center font-semibold tracking-wide whitespace-nowrap soft-transition rounded disabled:opacity-60 disabled:cursor-not-allowed print:hidden;
     }
 
     .btn-base-filled {
@@ -117,13 +117,13 @@
     /* Dropdown button/link */
     /*
       .dropdown-button {
-          @apply flex items-center gap-x-2 px-4 py-2 text-sm leading-5 text-gray-4 hover:bg-gray-1/30 focus:outline-none soft-transition;
+          @apply flex items-center gap-x-2 px-4 py-2 leading-5 text-gray-4 hover:bg-gray-1/30 focus:outline-none soft-transition;
       }
   */
     /* Tabs */
     /*
     .tab {
-        @apply relative inline-flex pt-2 pb-2 px-5 text-sm text-center rounded-t-lg border-b-2 soft-transition whitespace-nowrap leading-5 focus:outline-none;
+        @apply relative inline-flex pt-2 pb-2 px-5 text-center rounded-t-lg border-b-2 soft-transition whitespace-nowrap leading-5 focus:outline-none;
     }
 
     .tab-active {
@@ -210,7 +210,7 @@
     }
 
     .input-none {
-        @apply appearance-none rounded text-sm border bg-gray-100/20 border-transparent hover:bg-gray-100/50 border ring-0 focus:ring-0 focus:border-transparent soft-transition;
+        @apply appearance-none rounded border bg-gray-100/20 border-transparent hover:bg-gray-100/50 border ring-0 focus:ring-0 focus:border-transparent soft-transition;
     }
 
     .select {
@@ -218,6 +218,6 @@
     }
 
     .file-input {
-        @apply focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:cursor-pointer file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-400 hover:file:bg-gray-200/40;
+        @apply focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:cursor-pointer file:font-semibold file:bg-gray-100 file:text-gray-400 hover:file:bg-gray-200/40;
     }
 }

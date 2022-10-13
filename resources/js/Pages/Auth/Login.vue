@@ -37,20 +37,20 @@ const submit = () => {
             <AuthenticationCardLogo/>
         </template>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        <div v-if="status" class="mb-4 font-medium text-green-600">
             {{ status }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Nombre de usuario"/>
-                <TextInput id="email" v-model="form.email" type="text" class="mt-1 block w-full" required autofocus/>
+                <TextInput id="email" v-model="form.email" type="text" required autofocus/>
                 <InputError class="mt-2" :message="form.errors.email"/>
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password" value="Password"/>
-                <TextInput id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
+                <TextInput id="password" v-model="form.password" type="password" required
                            autocomplete="current-password"/>
                 <InputError class="mt-2" :message="form.errors.password"/>
             </div>
@@ -61,7 +61,7 @@ const submit = () => {
 
             <div class="flex items-center justify-between mt-6">
                 <Link v-if="canResetPassword" :href="route('password.request')"
-                      class="underline text-sm text-gray-300 hover:text-gray-200">
+                      class="underline text-gray-300 hover:text-gray-200">
                     Olvidaste tu contraseña?
                 </Link>
 
