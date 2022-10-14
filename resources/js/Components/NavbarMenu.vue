@@ -16,8 +16,9 @@
                         <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </NavLink>
-                        <NavLink :href="route('investigacion')" :active="route().current('investigacion')">
-                            Investigacion
+                        <NavLink :href="route('investigacion.listar_investigaciones')"
+                                 :active="route().current('investigacion.*')">
+                            Investigación
                         </NavLink>
                     </div>
                 </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InvestigacionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,12 +26,19 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
+    /**
+     * @routeNamespace("App\Http\Controllers\DashboardController")
+     * @routePrefix("dashboard")
+     */
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    /**
+     * @routeNamespace("App\Http\Controllers\InvestigacionController")
+     * @routePrefix("investigacion")
+     */
+    Route::prefix('investigacion')->controller(InvestigacionController::class)->name('investigacion.')->group(function () {
+        Route::get('/', 'listar_investigaciones')->name('listar_investigaciones');
+    });
+
 });
