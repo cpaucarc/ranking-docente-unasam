@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SemestreResource;
+use App\Models\Semestre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SemestreController extends Controller
 {
@@ -13,7 +16,15 @@ class SemestreController extends Controller
      */
     public function index()
     {
-        return inertia('Admin/Semestre/Index');
+        if (!Auth::user()->hasRole('Administrador')) {
+            abort(403, 'No estas autorizado');
+        }
+
+        $callback = Semestre::query()->orderBy('nombre', 'desc');
+
+        $semestres = SemestreResource::collection($callback->get());
+        $semestre_activo = SemestreResource::make($callback->where('esta_activo', true)->first());
+        return inertia('Admin/Semestre/Index', compact('semestres', 'semestre_activo'));
     }
 
     /**
@@ -23,7 +34,7 @@ class SemestreController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Admin/Semestre/Create');
     }
 
     /**
