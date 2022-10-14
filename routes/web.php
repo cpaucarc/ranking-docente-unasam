@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvestigacionController;
+use App\Http\Controllers\ResponsabilidadSocialController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,9 +28,19 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    /**
+     * @routeNamespace("App\Http\Controllers\DashboardController")
+     * @routePrefix("dashboard")
+     */
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    /**
+     * @routeNamespace("App\Http\Controllers\ResponsabilidadSocialController")
+     * @routePrefix("responsabilidad-social")
+     */
+    Route::prefix('responsabilidad-social')->controller(ResponsabilidadSocialController::class)->name('responsabilidad-social.')->group(function () {
+        Route::get('/', 'listar_responsabilidad_social')->name('listar_responsabilidad_social');
+    });
 
 //    Route::get('/investigacion', function () {
 //        $personas = \App\Models\Persona::query()->limit(20)->get();

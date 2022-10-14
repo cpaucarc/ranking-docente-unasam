@@ -19,6 +19,10 @@
                         <NavLink :href="route('investigacion.index')" :active="route().current('investigacion.*')">
                             Investigacion
                         </NavLink>
+                        <NavLink :href="route('responsabilidad-social.listar_responsabilidad_social')"
+                                 :active="route().current('responsabilidad-social.*')">
+                            Responsabilidad Social
+                        </NavLink>
                     </div>
                 </div>
 
