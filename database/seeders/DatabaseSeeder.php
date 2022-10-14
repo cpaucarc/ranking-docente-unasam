@@ -14,13 +14,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Nivel 0
         $this->call(FacultadSeeder::class);
+        $this->call(PersonaSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(SemestreSeeder::class);
+
+        // Nivel 1
         $this->call(DepartamentoSeeder::class);
         $this->call(EscuelaSeeder::class);
-        $this->call(PersonaSeeder::class);
-        $this->call(DocenteSeeder::class);
+        \App\Models\Investigacion::factory(60)->create();
         $this->call(UserSeeder::class);
+        // Nivel 2
+        $this->call(DocenteSeeder::class);
+        \App\Models\Investigador::factory(150)->create();
+        // Nivel 3
+        // Nivel 4
     }
 }
