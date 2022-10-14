@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\InvestigacionConstant;
 use App\Models\Investigacion;
 use App\Http\Requests\StoreInvestigacionRequest;
 use App\Http\Requests\UpdateInvestigacionRequest;
@@ -18,7 +19,8 @@ class InvestigacionController extends Controller
 
     public function create(): Response|ResponseFactory
     {
-        return inertia('Investigacion/Create');
+        $fuentes = InvestigacionConstant::financiador();
+        return inertia('Investigacion/Create', compact('fuentes'));
     }
 
     /**
