@@ -193,12 +193,16 @@
         -webkit-text-fill-color: white;
     }
 
+    input {
+        color-scheme: dark;
+    }
+
     .input-error {
         @apply border-red-500 bg-red-500/10 ring-red-500 text-gray-200 focus:bg-red-500/20;
     }
 
     .form {
-        @apply p-2.5 font-medium tracking-wide rounded-md block w-full bg-transparent border border-gray-600 text-gray-300 focus:text-white focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 soft-transition disabled:bg-gray-900 disabled:border-gray-900 disabled:italic disabled:cursor-not-allowed disabled:text-gray-500;
+        @apply px-2.5 py-1.5 font-medium tracking-wide rounded-md block w-full bg-transparent border border-gray-600 text-gray-200 focus:text-white focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 soft-transition disabled:bg-gray-900 disabled:border-gray-900 disabled:cursor-not-allowed disabled:text-gray-500/80;
     }
 
     .form-border {
@@ -219,5 +223,17 @@
 
     .file-input {
         @apply focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:cursor-pointer file:font-semibold file:bg-gray-100 file:text-gray-400 hover:file:bg-gray-200/40;
+    }
+
+    option {
+        @apply bg-gray-900 text-gray-300;
+    }
+
+    textarea {
+        @apply input;
+    }
+
+    select {
+        @apply select;
     }
 }
