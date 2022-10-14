@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InvestigacionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,12 +25,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+//    Route::get('/investigacion', function () {
+//        $personas = \App\Models\Persona::query()->limit(20)->get();
+//        return Inertia::render('Investigacion/Index', compact('personas'));
+//    })->name('investigacion');
+
+    Route::resource('investigacion', InvestigacionController::class);
 });

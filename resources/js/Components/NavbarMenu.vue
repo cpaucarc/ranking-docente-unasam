@@ -16,7 +16,7 @@
                         <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </NavLink>
-                        <NavLink :href="route('investigacion')" :active="route().current('investigacion')">
+                        <NavLink :href="route('investigacion.index')" :active="route().current('investigacion.*')">
                             Investigacion
                         </NavLink>
                     </div>
@@ -28,10 +28,10 @@
                         <Dropdown align="right" width="48">
                             <template #trigger>
                                 <button v-if="$page.props.jetstream.managesProfilePhotos"
-                                        class="flex items-center gap-x-1 font-semibold text-gray-300 hover:text-gray-50 soft-transition">
+                                        class="flex items-center gap-x-2 font-semibold text-gray-300 hover:text-gray-50 soft-transition">
+                                    {{ $page.props.user.name }}
                                     <img class="icon-10 rounded-full object-cover"
                                          :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
-                                    {{ $page.props.user.name }}
                                     <ChevronDownIcon class="icon-4"/>
                                 </button>
 
@@ -45,12 +45,12 @@
 
                             <template #content>
                                 <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    Manage Account
+                                <div class="block px-4 py-2 text-sm text-gray-400">
+                                    Administrar cuenta
                                 </div>
 
                                 <DropdownLink :href="route('profile.show')">
-                                    Profile
+                                    Mi Perfíl
                                 </DropdownLink>
 
                                 <div class="border-t border-gray-700"/>
@@ -58,7 +58,7 @@
                                 <!-- Authentication -->
                                 <form @submit.prevent="logout">
                                     <DropdownLink as="button">
-                                        Log Out
+                                        Cerrar sesión
                                     </DropdownLink>
                                 </form>
                             </template>
@@ -107,13 +107,13 @@
 
                 <div class="mt-3 space-y-1">
                     <ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
-                        Profile
+                        Mi Perfíl
                     </ResponsiveNavLink>
 
                     <!-- Authentication -->
                     <form method="POST" @submit.prevent="logout">
                         <ResponsiveNavLink as="button">
-                            Log Out
+                            Cerrar sesión
                         </ResponsiveNavLink>
                     </form>
                 </div>
