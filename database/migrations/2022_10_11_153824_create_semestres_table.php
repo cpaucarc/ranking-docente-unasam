@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("nombre", 6);
             $table->date("fecha_inicio");
             $table->date("fecha_fin");
-            $table->boolean("esta_activo")->default(true);
+            $table->boolean("esta_activo")->default(false);
         });
     }
 
