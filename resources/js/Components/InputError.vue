@@ -8,7 +8,7 @@ defineProps({
 
 <template>
     <div v-show="message">
-        <p class="text-sm text-red-500 inline-flex items-center gap-x-1">
+        <p class="text-sm text-red-500 inline-flex items-center gap-x-1 mt-2">
             <ExclamationTriangleIcon class="icon-5 text-red-600/90"/>
             {{ message }}
         </p>

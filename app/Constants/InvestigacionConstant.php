@@ -37,6 +37,7 @@ class InvestigacionConstant
     public static function financiador()
     {
         return collect([
+            collect(['id' => 0, 'nombre' => 'Ninguno']),
             collect(['id' => 1, 'nombre' => 'FONDECYT']),
             collect(['id' => 2, 'nombre' => 'Recursos Determinados Canon, SobreCanon y Regalias']),
             collect(['id' => 3, 'nombre' => 'Recursos Ordinarios']),
