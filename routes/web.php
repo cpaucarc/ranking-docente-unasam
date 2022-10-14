@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvestigacionController;
 use App\Http\Controllers\ResponsabilidadSocialController;
+use App\Http\Controllers\SemestreController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +34,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
      * @routePrefix("dashboard")
      */
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    /**
+     * @routeNamespace("App\Http\Controllers\SemestreController")
+     * @routePrefix("admin")
+     */
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('semestres', SemestreController::class);
+    });
 
     /**
      * @routeNamespace("App\Http\Controllers\ResponsabilidadSocialController")
