@@ -1,7 +1,7 @@
 <template>
     <AppLayout title="Semestre Académico">
         <div class="space-y-8">
-            <Boton as="link" :href="route('admin.semestres.create')">
+            <Boton as="link" :href="route('admin.semestre.create')">
                 Nuevo Semestre
             </Boton>
 

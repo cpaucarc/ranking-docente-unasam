@@ -40,7 +40,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
      * @routePrefix("admin")
      */
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::resource('semestres', SemestreController::class);
+        Route::resource('semestre', SemestreController::class);
     });
 
     /**

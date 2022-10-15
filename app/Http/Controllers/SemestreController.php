@@ -53,7 +53,7 @@ class SemestreController extends Controller
             $fecha_fin_semestre_anterior = Semestre::query()->orderBy('nombre', 'desc')->first()->fecha_fin;
 
             if ($exists) {
-                $request->session()->flash('flash.banner', 'El semestre academico ' . $request->anio . '-' . $request->semestre . ' ya está creado.');
+                $request->session()->flash('flash.banner', 'El semestre académico ' . $request->anio . '-' . $request->semestre . ' ya está creado.');
                 $request->session()->flash('flash.bannerStyle', 'danger');
                 return redirect()->back();
             }
@@ -71,7 +71,7 @@ class SemestreController extends Controller
                 } else {
                     $request->session()->flash('flash.banner', 'El semestre académico de nivelación comprende entre 7 a 9 semanas. Verifique las fechas.');
                     $request->session()->flash('flash.bannerStyle', 'danger');
-                    return redirect()->route('admin.semestres.create');
+                    return redirect()->back();
                 }
             } elseif ($request->semestre == 1 or $request->semestre == 2) {
                 if ($diferencia_en_semanas > 15 && $diferencia_en_semanas < 17) {
@@ -101,7 +101,7 @@ class SemestreController extends Controller
         } catch (Exception $e) {
             $request->session()->flash('flash.banner', 'Hubo un error inesperado: \n' . $e);
             $request->session()->flash('flash.bannerStyle', 'danger');
-            return redirect()->route('admin.semestres.create');
+            return redirect()->back();
         }
     }
 

@@ -23,8 +23,8 @@
                                  :active="route().current('responsabilidad-social.*')">
                             Responsabilidad Social
                         </NavLink>
-                        <NavLink :href="route('admin.semestres.index')"
-                                 :active="route().current('admin.semestres.*')">
+                        <NavLink :href="route('admin.semestre.index')"
+                                 :active="route().current('admin.semestre.*')">
                             Semestres Académicos
                         </NavLink>
                     </div>
