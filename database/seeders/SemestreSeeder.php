@@ -37,7 +37,7 @@ class SemestreSeeder extends Seeder
             [
                 "nombre" => "2022-1",
                 "fecha_inicio" => "2022-07-18",
-                "fecha_fin" => "2022-11-04",
+                "fecha_fin" => "2022-11-11",
                 "esta_activo" => true
             ]
         ];
