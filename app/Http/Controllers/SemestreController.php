@@ -96,24 +96,13 @@ class SemestreController extends Controller
 
                 $request->session()->flash('flash.banner', 'El semestre académico ' . $request->anio . '-' . $request->semestre . ' se registró correctamente.');
                 $request->session()->flash('flash.bannerStyle', 'success');
-                return redirect()->route('admin.semestres.index');
+                return redirect()->route('admin.semestre.index');
             }
         } catch (Exception $e) {
             $request->session()->flash('flash.banner', 'Hubo un error inesperado: \n' . $e);
             $request->session()->flash('flash.bannerStyle', 'danger');
             return redirect()->back();
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -124,29 +113,8 @@ class SemestreController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        Semestre::where('id', '<>', $id)->update(['esta_activo' => false]);
+        Semestre::where('id', '=', $id)->update(['esta_activo' => true]);
+        return redirect()->route('admin.semestre.index');
     }
 }
