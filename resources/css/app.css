@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -202,7 +202,7 @@
     }
 
     .form {
-        @apply px-2.5 py-1.5 font-medium tracking-wide rounded-md block w-full bg-transparent border border-gray-600 text-gray-200 focus:text-white focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 soft-transition disabled:bg-gray-900 disabled:border-gray-900 disabled:cursor-not-allowed disabled:text-gray-500/80;
+        @apply px-2.5 py-1.5 font-medium tracking-wide rounded-md block w-full bg-gray-800 border border-gray-700 text-gray-200 focus:text-white focus:ring-blue-500 focus:border-blue-500 placeholder-gray-600 soft-transition disabled:cursor-not-allowed disabled:text-gray-600 disabled:line-through;
     }
 
     .form-border {
@@ -210,7 +210,7 @@
     }
 
     .input {
-        @apply form px-3 placeholder:text-gray-200/60 out-of-range:input-error;
+        @apply form px-3 out-of-range:input-error;
     }
 
     .input-none {
@@ -222,7 +222,7 @@
     }
 
     .file-input {
-        @apply focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded file:border-0 file:cursor-pointer file:font-semibold file:bg-gray-100 file:text-gray-400 hover:file:bg-gray-200/40;
+        @apply border border-gray-700 cursor-pointer focus:outline-none ring-2 ring-transparent focus:ring-blue-500 file:mr-3 file:py-0.5 file:px-2 file:rounded file:border-0 file:cursor-pointer file:text-sm file:font-semibold file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600 soft-transition;
     }
 
     option {
