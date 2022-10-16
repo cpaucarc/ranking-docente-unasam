@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "@heroicons/vue": "^2.0.12"
+        "@heroicons/vue": "^2.0.12",
+        "moment": "^2.29.4"
     }
 }
