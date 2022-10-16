@@ -6,6 +6,7 @@ use App\Http\Resources\UsuarioResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
 {
@@ -33,8 +34,8 @@ class UsuarioController extends Controller
                     ->orWhereIn("persona_id", function ($query2) use ($nombre) {
                         $query2->select('id')->from('personas')
                             ->where('dni', 'LIKE', '%' . $nombre . '%')
-                            ->orWhere('apellido_paterno', 'LIKE', '%' . $nombre . '%')
-                            ->orWhere('apellido_materno', 'LIKE', '%' . $nombre . '%');
+                            ->orWhere('apellidos', 'LIKE', '%' . $nombre . '%')
+                            ->orWhere('nombres', 'LIKE', '%' . $nombre . '%');
                     });
             });
         }
@@ -67,7 +68,7 @@ class UsuarioController extends Controller
 
         $user_roles = Role::query()->pluck('name', 'id');
         $filters = ['nombre' => $nombre, 'rol' => $rol, 'estado' => $estado];
-        return inertia('Usuario/Index', compact('usuarios', 'user_roles', 'filters'));
+        return inertia('Admin/Usuario/Index', compact('usuarios', 'user_roles', 'filters'));
     }
 
     /**

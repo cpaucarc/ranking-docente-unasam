@@ -9,7 +9,7 @@ class UsuarioResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
     public function toArray($request)
@@ -20,7 +20,7 @@ class UsuarioResource extends JsonResource
             'username' => $this->username,
             'profile_photo_url' => $this->profile_photo_url,
             'dni' => $this->persona?->dni,
-            'fullname' => $this->persona?->nombre_completo,
+            'fullname' => $this->persona ? $this->persona->apellidos . ' ' . $this->persona->nombres : null,
             'email' => $this->email,
             'roles' => RoleResource::collection($this->whenLoaded('roles')),
             'esta_activo' => boolval($this->esta_activo),
