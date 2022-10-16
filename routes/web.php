@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvestigacionController;
 use App\Http\Controllers\ResponsabilidadSocialController;
 use App\Http\Controllers\SemestreController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -41,6 +42,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
      */
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('semestre', SemestreController::class)->only(['index', 'create', 'store', 'edit']);
+        Route::resource('usuario', UsuarioController::class);
     });
 
     /**
