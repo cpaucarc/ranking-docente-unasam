@@ -27,6 +27,10 @@
                                  :active="route().current('admin.semestre.*')">
                             Semestres Académicos
                         </NavLink>
+                        <NavLink :href="route('admin.usuario.index')"
+                                 :active="route().current('admin.usuario.*')">
+                            Usuarios
+                        </NavLink>
                     </div>
                 </div>
 

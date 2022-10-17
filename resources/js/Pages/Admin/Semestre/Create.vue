@@ -6,10 +6,10 @@
                     <JetLabel for="anio" value="Semestre académico"/>
                     <div class="flex space-x-2">
                         <TextInput id="anio" type="number" v-model="form.anio" :placeholder="new Date().getFullYear()"
-                                   min="2000" max="3000" required
+                                   min="2000" max="3000" required autofocus
                                    :class="{'input-error': form.anio === '' || 'anio' in form.errors}"/>
                         <TextInput class="w-16 text-center rounded" type="text" value="-" disabled="true"/>
-                        <TextInput type="number" v-model="form.semestre" placeholder="2" min="0" max="2" autofocus
+                        <TextInput type="number" v-model="form.semestre" placeholder="2" min="0" max="2"
                                    oninput="this.value = this.value.replace(/[^0-2]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                    :class="{'input-error': form.semestre === '' || 'semestre' in form.errors}"/>
                     </div>
@@ -61,7 +61,7 @@ import JetSecondaryButton from '@/Components/SecondaryButton.vue';
 import BotonSave from '@/Components/BotonSave.vue';
 
 const form = useForm({
-    anio: new Date().getFullYear(),
+    anio: "",
     semestre: "",
     fecha_inicio: "",
     fecha_fin: "",

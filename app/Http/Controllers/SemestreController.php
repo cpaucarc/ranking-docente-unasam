@@ -14,17 +14,16 @@ class SemestreController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response|\Inertia\ResponseFactory
      */
     public function index()
     {
         if (!Auth::user()->hasRole('Administrador')) {
             abort(403, 'No estas autorizado');
         }
-
         $callback = Semestre::query()->orderBy('nombre', 'desc');
 
-        $semestres = SemestreResource::collection($callback->get());
+        $semestres = $callback->paginate(5)->withQueryString()->through(fn($semestre) => new SemestreResource($semestre));
         $semestre_activo = SemestreResource::make($callback->where('esta_activo', true)->first());
         return inertia('Admin/Semestre/Index', compact('semestres', 'semestre_activo'));
     }
@@ -32,7 +31,7 @@ class SemestreController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response|\Inertia\ResponseFactory
      */
     public function create()
     {
@@ -43,7 +42,7 @@ class SemestreController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreSemestreRequest $request)
     {
@@ -109,7 +108,7 @@ class SemestreController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
