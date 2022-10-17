@@ -1,24 +1,22 @@
 <template>
-    <AppLayout title="Semestre Académico">
+    <AppLayout title="Usuario">
         <div class="space-y-8">
             <SectionTitle>
                 <template #title>
-                    Lista de semestres académicos
+                    Lista de usuarios del sistema
                 </template>
                 <template #aside>
-                    <Boton as="link" :href="route('admin.semestre.create')">Registrar nuevo</Boton>
+                    <Boton as="link" :href="route('admin.usuario.create')">Registrar nuevo</Boton>
                 </template>
             </SectionTitle>
             <div class="w-full flex items-center justify-between">
                 <SearchInput v-model="filtros.nombre" class="w-1/3" placeholder="Buscar por usuario, DNI o nombres"/>
-
                 <div class="flex items-center gap-x-3">
                     <select v-model="filtros.estado" class="select" @change="filtrarUsuarios">
                         <option value="todos">Usuarios habilitados e deshabilitados</option>
                         <option value="activos">Solo usuarios habilitados</option>
                         <option value="inactivos">Solo usuarios deshabilitados</option>
                     </select>
-
                     <select v-model="filtros.rol" class="select" @change="filtrarUsuarios">
                         <option value="todos">Todos los usuarios</option>
                         <option value="con_roles">Usuarios con algún rol</option>
@@ -48,7 +46,7 @@
                                 <p class="font-medium uppercase text-xs">{{
                                         usuario.data.fullname ?? usuario.data.name
                                     }}</p>
-                                <p class="text-gray-2">DNI: {{ usuario.data.dni ?? '00000000' }}</p>
+                                <p v-if="usuario.data.dni" class="text-gray-2">DNI: {{ usuario.data.dni }}</p>
                             </div>
                         </div>
                     </TableColumn>
@@ -68,9 +66,11 @@
                                :class="usuario.data.esta_activo ? 'bg-green-3/50' : 'bg-red-3/50'">
                                 {{ usuario.data.esta_activo ? 'Habilitado' : 'Deshabilitado' }}
                             </p>
-                            <Boton v-if="usuario.id !== $page.props.user.id" as="button"
-                                   :title="usuario.esta_activo ? 'Deshabilitar usuario' : 'Habilitar usuario'"
-                                   @click="verConfirmationModal = !verConfirmationModal; usuario_id=usuario.id;estado_usuario=usuario.esta_activo;name_usuario=usuario.name">
+                            <Boton v-if="usuario.id !== $page.props.user.id" as="button" variant="outlined"
+                                   :title="usuario.data.esta_activo ? 'Deshabilitar usuario' : 'Habilitar usuario'"
+                                   @click="verConfirmationModal = !verConfirmationModal;
+                                   usuario_id=usuario.data.id;estado_usuario=usuario.data.esta_activo;
+                                   name_usuario=usuario.data.name">
                                 <svg class="icon-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
                                      stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -83,10 +83,10 @@
                         </div>
                     </TableColumn>
                     <TableColumn class="text-right">
-                        <JetSecondaryButton as="link" :href="route('admin.usuario.show',{'usuario':usuario.data})"
-                                            title="Ver usuario">
+                        <Boton as="link" :href="route('admin.usuario.show',{'usuario':usuario.data})"
+                               title="Ver usuario">
                             Ver usuario
-                        </JetSecondaryButton>
+                        </Boton>
                     </TableColumn>
                 </TableRow>
             </TableBasic>
@@ -107,7 +107,6 @@
                 <JetSecondaryButton @click="verConfirmationModal = false">
                     Cancelar
                 </JetSecondaryButton>
-
                 <form @submit.prevent="cambiarEstado">
                     <Boton color="danger">
                         {{ estado_usuario ? 'Deshabilitar' : 'Habilitar' }}
@@ -121,30 +120,21 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import {Inertia} from "@inertiajs/inertia";
-
-import {CheckCircleIcon} from "@heroicons/vue/24/outline";
+import {ref, watch} from "vue";
+import {useForm} from "@inertiajs/inertia-vue3";
+import {debounce} from "lodash";
 
 import SectionTitle from "@/Components/SectionTitle.vue";
 import Boton from '@/Components/Boton.vue';
 
-import SemestreActivo from "@/Components/App/Semestre/SemestreActivo.vue";
 import TableBasic from "@/Components/Tables/TableBasic.vue"
 import TableColumn from "@/Components/Tables/TableColumn.vue"
 import TableHead from "@/Components/Tables/TableHead.vue"
 import TableRow from "@/Components/Tables/TableRow.vue"
 
-import Card from "@/Components/Card.vue";
-import JetLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
-import InputError from "@/Components/InputError.vue";
 import JetSecondaryButton from '@/Components/SecondaryButton.vue';
-import BotonSave from '@/Components/BotonSave.vue';
 import ConfirmationModal from '@/Components/ConfirmationModal.vue';
-import {ref, watch} from "vue";
-import {useForm} from "@inertiajs/inertia-vue3";
-import {debounce} from "lodash";
 import SearchInput from "@/Components/Forms/SearchInput.vue";
-
 
 const props = defineProps({
     usuarios: Object,
