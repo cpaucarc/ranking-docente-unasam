@@ -9,10 +9,9 @@
                     <Boton as="link" :href="route('admin.semestre.create')">Registrar nuevo</Boton>
                 </template>
             </SectionTitle>
-
             <div class="grid grid-cols-3 gap-x-8 items-start">
                 <div class="col-span-1">
-                    <SemestreActivo :semestre="semestre_activo.data"/>
+                    <SemestreActivo :semestre="semestre_activo"/>
                 </div>
                 <div class="col-span-2">
                     <TableBasic v-if="semestres.data.length>0">
@@ -23,25 +22,27 @@
                             <TableHead>Fecha Fin</TableHead>
                             <TableHead>Semanas</TableHead>
                             <TableHead>Estado</TableHead>
-                            <TableHead><span class="sr-only">Acciones</span></TableHead>
                         </template>
                         <TableRow v-for="(semestre,index) in semestres.data" :key="semestre.id">
-                            <TableColumn>{{ (index + 1) }}</TableColumn>
+                            <TableColumn>
+                                {{ (semestres.current_page - 1) * semestres.per_page + (index + 1) }}
+                            </TableColumn>
                             <TableColumn>{{ semestre.nombre }}</TableColumn>
                             <TableColumn>{{ semestre.fecha_inicio_dMY }}</TableColumn>
                             <TableColumn>{{ semestre.fecha_fin_dMY }}</TableColumn>
                             <TableColumn>{{ semestre.semanas }}</TableColumn>
                             <TableColumn>
-                                <Boton variant="outlined" :color="semestre.esta_activo ? 'success':'danger'"
-                                       class="text-xs">
-                                    {{ semestre.esta_activo ? 'Activo' : 'Inactivo' }}
-                                </Boton>
-                            </TableColumn>
-                            <TableColumn>
-                                <Boton color="success" v-if="!semestre.esta_activo && semestre.activable"
-                                       @click="activarSemestre(semestre.id)">
-                                    <CheckCircleIcon class="w-5 h-5"/>
-                                </Boton>
+                                <div class="flex items-center space-x-1">
+                                    <p class="inline-flex font-medium px-2 py-1 rounded"
+                                       :class="semestre.esta_activo ? 'text-green-700 bg-green-600/10' : 'text-red-700 bg-red-600/10'">
+                                        {{ semestre.esta_activo ? 'Activo' : 'Inactivo' }}
+                                    </p>
+                                    <Boton v-if="!semestre.esta_activo && semestre.activable"
+                                           @click="activarSemestre(semestre.id)" variant="text"
+                                           title="Activar semestre">
+                                        <PlayCircleIcon class="icon-6"/>
+                                    </Boton>
+                                </div>
                             </TableColumn>
                         </TableRow>
                     </TableBasic>
@@ -55,7 +56,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import {Inertia} from "@inertiajs/inertia";
 
-import {CheckCircleIcon} from "@heroicons/vue/24/outline";
+import {PlayCircleIcon} from "@heroicons/vue/24/outline";
 
 import SectionTitle from "@/Components/SectionTitle.vue";
 import Boton from '@/Components/Boton.vue';
