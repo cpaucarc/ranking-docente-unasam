@@ -7,6 +7,7 @@ use App\Http\Resources\UsuarioResource;
 use App\Models\Docente;
 use App\Models\User;
 use App\Models\Validador;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -148,24 +149,47 @@ class UsuarioController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'roles_selected' => 'required',
+        ]);
+
+        $data = User::query()->where('id', $id)->first();
+        $data->assignRole($validated['roles_selected']);
+
+        $request->session()->flash('flash.banner', '¡Rol asignado!');
+        $request->session()->flash('flash.bannerStyle', 'success');
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         $usuario = User::find($id);
         $usuario->esta_activo = !$usuario->esta_activo;
         $usuario->save();
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @param string $role
+     * @return RedirectResponse
+     */
+    public function destroy_role($id, $role)
+    {
+        $usuario = User::query()->where('id', $id)->first();
+        $usuario->removeRole($role);
         return redirect()->back();
     }
 }

@@ -43,6 +43,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('semestre', SemestreController::class)->only(['index', 'create', 'store', 'edit']);
         Route::resource('usuario', UsuarioController::class);
+        Route::get('/role/{usuario}/{role}', [UsuarioController::class, 'destroy_role'])->name('usuario.role.destroy');
     });
 
     /**
