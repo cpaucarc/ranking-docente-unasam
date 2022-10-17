@@ -41,20 +41,20 @@
                 <TableRow v-for="usuario in usuarios.data" :key="usuario.id">
                     <TableColumn>
                         <div class="flex gap-x-3 h-14 items-center soft-transition">
-                            <img class="icon-8 avatar" :src="usuario.data.profile_photo_url" :alt="usuario.name">
+                            <img class="icon-8 avatar" :src="usuario.profile_photo_url" :alt="usuario.name">
                             <div class="flex flex-col leading-5 group focus:outline-none soft-transition">
                                 <p class="font-medium uppercase text-xs">{{
-                                        usuario.data.fullname ?? usuario.data.name
+                                        usuario.fullname ?? usuario.name
                                     }}</p>
-                                <p v-if="usuario.data.dni" class="text-gray-2">DNI: {{ usuario.data.dni }}</p>
+                                <p v-if="usuario.dni" class="text-gray-2">DNI: {{ usuario.dni }}</p>
                             </div>
                         </div>
                     </TableColumn>
-                    <TableColumn>{{ usuario.data.username }}</TableColumn>
-                    <TableColumn>{{ usuario.data.created_at }}</TableColumn>
+                    <TableColumn>{{ usuario.username }}</TableColumn>
+                    <TableColumn>{{ usuario.created_at }}</TableColumn>
                     <TableColumn>
-                        <ul v-if="usuario.data.roles.length > 0" class="whitespace-nowrap pl-3">
-                            <li v-for="rol in usuario.data.roles" :key="rol.id">
+                        <ul v-if="usuario.roles.length > 0" class="whitespace-nowrap pl-3">
+                            <li v-for="rol in usuario.roles" :key="rol.id">
                                 • {{ rol.name }}
                             </li>
                         </ul>
@@ -62,16 +62,16 @@
                     </TableColumn>
                     <TableColumn>
                         <div class="flex items-center space-x-1">
-                            <p class="inline-flex text-xs font-medium px-2 py-1 rounded-md"
-                               :class="usuario.data.esta_activo ? 'bg-green-3/50' : 'bg-red-3/50'">
-                                {{ usuario.data.esta_activo ? 'Habilitado' : 'Deshabilitado' }}
+                            <p class="inline-flex text-xs font-medium px-2 py-1 rounded"
+                               :class="usuario.esta_activo ? 'text-green-700 bg-green-600/10' : 'text-red-700 bg-red-600/10'">
+                                {{ usuario.esta_activo ? 'Habilitado' : 'Deshabilitado' }}
                             </p>
-                            <Boton v-if="usuario.id !== $page.props.user.id" as="button" variant="outlined"
-                                   :title="usuario.data.esta_activo ? 'Deshabilitar usuario' : 'Habilitar usuario'"
+                            <Boton v-if="usuario.id !== $page.props.user.id" as="button" variant="text"
+                                   :title="usuario.esta_activo ? 'Deshabilitar usuario' : 'Habilitar usuario'"
                                    @click="verConfirmationModal = !verConfirmationModal;
-                                   usuario_id=usuario.data.id;estado_usuario=usuario.data.esta_activo;
-                                   name_usuario=usuario.data.name">
-                                <svg class="icon-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none"
+                                               usuario_id=usuario.id;estado_usuario=usuario.esta_activo;
+                                               name_usuario=usuario.name">
+                                <svg class="icon-5" viewBox="0 0 24 24" stroke-width="2" stroke="#2563eb" fill="none"
                                      stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <rect x="3" y="3" width="6" height="6" rx="1"/>
@@ -83,7 +83,7 @@
                         </div>
                     </TableColumn>
                     <TableColumn class="text-right">
-                        <Boton as="link" :href="route('admin.usuario.show',{'usuario':usuario.data})"
+                        <Boton as="link" variant="outlined" :href="route('admin.usuario.show',{'usuario':usuario})"
                                title="Ver usuario">
                             Ver usuario
                         </Boton>

@@ -12,11 +12,9 @@
                 <span class="underline">{{ semestre.fecha_inicio_dMY }}</span> hasta el
                 <span class="underline">{{ semestre.fecha_fin_dMY }}</span>
             </p>
-            <div class="flex items-center bg-amber-600/10 rounded p-2">
-                <div class="text-amber-600">
-                    <ExclamationTriangleIcon class="icon-7"/>
-                </div>
-                <div class="ml-4">
+            <div class="flex items-center bg-amber-600 rounded p-3">
+                <ExclamationTriangleIcon class="icon-6 stroke-2"/>
+                <div class="ml-2">
                     <h3 class="text-sm font-semibold">
                         Importante
                     </h3>

@@ -33,14 +33,14 @@
                             <TableColumn>{{ semestre.semanas }}</TableColumn>
                             <TableColumn>
                                 <div class="flex items-center space-x-1">
-                                    <p class="inline-flex font-medium px-2 py-1 rounded"
+                                    <p class="inline-flex text-xs font-medium px-2 py-1 rounded"
                                        :class="semestre.esta_activo ? 'text-green-700 bg-green-600/10' : 'text-red-700 bg-red-600/10'">
                                         {{ semestre.esta_activo ? 'Activo' : 'Inactivo' }}
                                     </p>
                                     <Boton v-if="!semestre.esta_activo && semestre.activable"
                                            @click="activarSemestre(semestre.id)" variant="text"
                                            title="Activar semestre">
-                                        <PlayCircleIcon class="icon-6"/>
+                                        <PlayCircleIcon class="icon-5"/>
                                     </Boton>
                                 </div>
                             </TableColumn>
